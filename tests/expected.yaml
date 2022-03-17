@@ -1,0 +1,104 @@
+---
+# Source: ingress/templates/configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: test-ingress
+  labels:
+    helm.sh/chart: ingress
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: ingress
+    app.kubernetes.io/instance: test
+    app.kubernetes.io/component: main
+data:
+  WEB_HOST: example.com
+---
+# Source: ingress/templates/ingress.yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: test-ingress-main
+  labels:
+    helm.sh/chart: ingress
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: ingress
+    app.kubernetes.io/instance: test
+    app.kubernetes.io/component: main
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    kubernetes.io/tls-acme: "true"
+spec:
+  tls:
+    - hosts:
+        - example.com
+        - example2.com
+      secretName: chart-example-tls
+  rules:
+    - host: example.com
+      http:
+        paths:
+          - path: "/toto/"
+            pathType: Prefix
+            backend:
+              service:
+                name: totoRelease-totoService
+                port:
+                  number: 1234
+          - path: "/"
+            pathType: Prefix
+            backend:
+              service:
+                name: test-ingress-rootService
+                port:
+                  number: 80
+    - host: example2.com
+      http:
+        paths:
+          - path: "/toto/"
+            pathType: Prefix
+            backend:
+              service:
+                name: totoRelease-totoService
+                port:
+                  number: 1234
+          - path: "/"
+            pathType: Prefix
+            backend:
+              service:
+                name: test-ingress-rootService
+                port:
+                  number: 80
+---
+# Source: ingress/templates/ingress.yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: test-ingress-alt
+  labels:
+    helm.sh/chart: ingress
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: ingress
+    app.kubernetes.io/instance: test
+    app.kubernetes.io/component: main
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    kubernetes.io/tls-acme: "true"
+spec:
+  rules:
+    - host: example3.com
+      http:
+        paths:
+          - path: "/toto/"
+            pathType: Prefix
+            backend:
+              service:
+                name: totoRelease-totoService
+                port:
+                  number: 1234
+          - path: "/"
+            pathType: Prefix
+            backend:
+              service:
+                name: test-ingress-rootService
+                port:
+                  number: 80

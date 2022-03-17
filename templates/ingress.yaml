@@ -1,0 +1,48 @@
+{{- $fullName := include "common.fullname" ( dict "root" . "service" .Values ) -}}
+{{- range $ingress_host_group := .Values.hostsGroup }}
+---
+{{- if semverCompare ">=1.19.0" ( trimPrefix "v" $.Capabilities.KubeVersion.Version ) }}
+apiVersion: networking.k8s.io/v1
+{{- else -}}
+{{- if semverCompare ">=1.14-0" $.Capabilities.KubeVersion.GitVersion -}}
+apiVersion: networking.k8s.io/v1beta1
+{{- else -}}
+apiVersion: extensions/v1beta1
+{{- end }}
+{{- end }}
+kind: Ingress
+metadata:
+  name: {{ $fullName }}-{{ $ingress_host_group.name }}
+  {{- include "common.metadata" ( dict "root" $ "service" $.Values ) | nindent 2 }}
+spec:
+{{- if $ingress_host_group.tls }}
+  tls:
+    - hosts:
+        {{- range $ingress_host_group.hosts }}
+        - {{ . }}
+        {{- end }}
+      secretName: {{ $ingress_host_group.tls.secretName }}
+{{- end }}
+  rules:
+    {{- range $ingress_host_group.hosts }}
+    - host: {{ . }}
+      http:
+        paths:
+        {{- range $key, $path := $.Values.paths }}
+          - path: "{{ $path.path }}"
+            {{- if semverCompare ">=1.14-0" $.Capabilities.KubeVersion.GitVersion }}
+            pathType: Prefix
+            {{- end }}
+            backend:
+              {{- if semverCompare ">=1.14-0" $.Capabilities.KubeVersion.GitVersion }}
+              service:
+                name: {{ include "ingress.serviceName" ( dict "root" $ "service" $.Values "path" $path ) }}
+                port:
+                  number: {{ $path.servicePort | default 80 }}
+              {{- else }}
+              serviceName: {{ include "ingress.serviceName" ( dict "root" $ "service" $.Values "path" $path ) }}
+              servicePort: {{ $path.servicePort | default 80 }}
+              {{- end -}}
+        {{- end }}
+    {{- end }}
+{{- end }}

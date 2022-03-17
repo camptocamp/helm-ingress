@@ -1,0 +1,10 @@
+---
+apiVersion: v2
+description: A Helm chart for deploying an ingress
+name: ingress
+version: 0.2.0
+home: http://camptocamp.com/
+dependencies:
+  - name: common
+    repository: https://camptocamp.github.io/helm-common
+    version: 0.2.1

@@ -1,0 +1,24 @@
+annotations:
+  kubernetes.io/ingress.class: nginx
+  kubernetes.io/tls-acme: "true"
+
+hostsGroup:
+  - name: main
+    hosts:
+      - example.com
+      - example2.com
+    tls:
+      secretName: chart-example-tls
+  - name: alt
+    hosts:
+      - example3.com
+
+paths:
+  root:
+    path: /
+    serviceName: rootService
+  other:
+    path: /toto/
+    serviceRelease: totoRelease
+    serviceName: totoService
+    servicePort: 1234
