@@ -13,7 +13,11 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: {{ $fullName }}-{{ $ingress_host_group.name }}
+  {{- if $ingress_host_group.annotations }}
+  {{- include "common.metadata" ( dict "root" $ "service" ( dict "labels" $.Values.labels "annotations" ( merge ( dict ) $ingress_host_group.annotations $.Values.annotations ) ) $.Values ) | nindent 2 }}
+  {{- else }}
   {{- include "common.metadata" ( dict "root" $ "service" $.Values ) | nindent 2 }}
+  {{- end }}
 spec:
 {{- if or ( not ( hasKey $ingress_host_group "tls" ) ) ( not ( eq $ingress_host_group.tls false ) ) }}
   tls:

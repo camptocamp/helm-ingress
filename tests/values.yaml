@@ -8,6 +8,8 @@ hostsGroup:
       - example.com
       - example2.com
   - name: alt
+    annotations:
+      kubernetes.io/ingress.class: other
     hosts:
       - example3.com
 
