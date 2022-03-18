@@ -81,7 +81,7 @@ metadata:
     app.kubernetes.io/instance: test
     app.kubernetes.io/component: main
   annotations:
-    kubernetes.io/ingress.class: nginx
+    kubernetes.io/ingress.class: other
     kubernetes.io/tls-acme: "true"
 spec:
   tls:
