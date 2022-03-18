@@ -7,8 +7,6 @@ hostsGroup:
     hosts:
       - example.com
       - example2.com
-    tls:
-      secretName: chart-example-tls
   - name: alt
     hosts:
       - example3.com
@@ -16,9 +14,9 @@ hostsGroup:
 paths:
   root:
     path: /
-    serviceName: rootService
+    serviceName: root-service
   other:
     path: /toto/
-    serviceRelease: totoRelease
-    serviceName: totoService
+    serviceRelease: toto-release
+    serviceName: toto-service
     servicePort: 1234

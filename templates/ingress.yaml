@@ -15,7 +15,7 @@ metadata:
   name: {{ $fullName }}-{{ $ingress_host_group.name }}
   {{- include "common.metadata" ( dict "root" $ "service" $.Values ) | nindent 2 }}
 spec:
-{{- if $ingress_host_group.tls }}
+{{- if or ( not ( hasKey $ingress_host_group "tls" ) ) ( not ( eq $ingress_host_group.tls false ) ) }}
   tls:
     - hosts:
         {{- range $ingress_host_group.hosts }}
