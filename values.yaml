@@ -19,9 +19,3 @@ paths: {}
 #    serviceRelease: <optional release>
 #    serviceName: <service name (in the release)>
 #    servicePort: <service port (default to 80)>
-
-tolerations: []
-
-affinity: {}
-
-prometheus: true
