@@ -1,0 +1,16 @@
+hostsGroup:
+  - name: main
+    hosts:
+      - example.com
+  - name: no-tls
+    tls: false
+    hosts:
+      - example2.com
+
+tls:
+  secretNamePrefix: toto
+
+paths:
+  root:
+    path: /
+    serviceName: root-service

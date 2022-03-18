@@ -5,12 +5,13 @@ annotations: {}
 #  kubernetes.io/ingress.class: nginx
 #  kubernetes.io/tls-acme: "true"
 
-hostsGroup: {}
+hostsGroup: []
 #  - name: <name>
 #    hosts:
 #      - <chart-example.local>
-#    tls:
-#      - secretName: chart-example-tls
+
+tls: {}
+# secretNamePrefix: tls- # optional
 
 paths: {}
 #  <name>:
@@ -18,9 +19,3 @@ paths: {}
 #    serviceRelease: <optional release>
 #    serviceName: <service name (in the release)>
 #    servicePort: <service port (default to 80)>
-
-tolerations: []
-
-affinity: {}
-
-prometheus: true

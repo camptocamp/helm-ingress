@@ -15,13 +15,17 @@ metadata:
   name: {{ $fullName }}-{{ $ingress_host_group.name }}
   {{- include "common.metadata" ( dict "root" $ "service" $.Values ) | nindent 2 }}
 spec:
-{{- if $ingress_host_group.tls }}
+{{- if or ( not ( hasKey $ingress_host_group "tls" ) ) ( not ( eq $ingress_host_group.tls false ) ) }}
   tls:
     - hosts:
         {{- range $ingress_host_group.hosts }}
         - {{ . }}
         {{- end }}
-      secretName: {{ $ingress_host_group.tls.secretName }}
+      {{- if $.Values.tls.secretNamePrefix }}
+      secretName: {{ $.Values.tls.secretNamePrefix }}-{{ $ingress_host_group.name }}
+      {{- else }}
+      secretName: {{ $fullName }}-{{ $ingress_host_group.name }}
+      {{- end }}
 {{- end }}
   rules:
     {{- range $ingress_host_group.hosts }}
