@@ -32,7 +32,7 @@ spec:
     - hosts:
         - example.com
         - example2.com
-      secretName: chart-example-tls
+      secretName: test-ingress-main
   rules:
     - host: example.com
       http:
