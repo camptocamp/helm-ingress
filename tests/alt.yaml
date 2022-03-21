@@ -1,4 +1,4 @@
-hostsGroup:
+hostsGroups:
   - name: main
     hosts:
       - example.com

@@ -1,5 +1,5 @@
 {{- $fullName := include "common.fullname" ( dict "root" . "service" .Values ) -}}
-{{- range $ingress_host_group := .Values.hostsGroup }}
+{{- range $ingress_host_group := .Values.hostsGroups }}
 ---
 {{- if semverCompare ">=1.19.0" ( trimPrefix "v" $.Capabilities.KubeVersion.Version ) }}
 apiVersion: networking.k8s.io/v1

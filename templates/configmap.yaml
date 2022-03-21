@@ -4,6 +4,6 @@ metadata:
   name: {{ include "common.fullname" ( dict "root" . "service" .Values ) }}
   labels: {{ include "common.labels" ( dict "root" . "service" .Values ) | nindent 4 }}
 data:
-  {{- if .Values.hostsGroup }}
-  WEB_HOST: {{ ( index ( index .Values.hostsGroup 0 ).hosts 0 ) }}
+  {{- if .Values.hostsGroups }}
+  WEB_HOST: {{ ( index ( index .Values.hostsGroups 0 ).hosts 0 ) }}
   {{- end }}
