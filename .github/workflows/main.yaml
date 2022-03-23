@@ -3,6 +3,8 @@ name: Continuous integration
 
 on:
   push:
+    branches:
+      - master
   pull_request:
 
 env:
@@ -20,7 +22,7 @@ jobs:
       matrix:
         helm:
           - latest
-          - '3.5.1'
+          - 3.5.1
 
     steps:
       - uses: actions/checkout@v3

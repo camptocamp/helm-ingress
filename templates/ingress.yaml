@@ -19,7 +19,11 @@ metadata:
   {{- include "common.metadata" ( dict "root" $ "service" $.Values ) | nindent 2 }}
   {{- end }}
 spec:
-{{- if or ( not ( hasKey $ingress_host_group "tls" ) ) ( not ( eq $ingress_host_group.tls false ) ) }}
+# Add tls only if tls is not set to false.
+# With resent version of helm it should be:
+# if or ( not ( hasKey $ingress_host_group "tls" ) ) ( not ( eq $ingress_host_group.tls false ) )
+# without else section.
+{{- if not ( hasKey $ingress_host_group "tls" ) }}
   tls:
     - hosts:
         {{- range $ingress_host_group.hosts }}
@@ -30,6 +34,19 @@ spec:
       {{- else }}
       secretName: {{ $fullName }}-{{ $ingress_host_group.name }}
       {{- end }}
+{{- else }}
+{{- if not ( eq $ingress_host_group.tls false ) }}
+  tls:
+    - hosts:
+        {{- range $ingress_host_group.hosts }}
+        - {{ . }}
+        {{- end }}
+      {{- if $.Values.tls.secretNamePrefix }}
+      secretName: {{ $.Values.tls.secretNamePrefix }}-{{ $ingress_host_group.name }}
+      {{- else }}
+      secretName: {{ $fullName }}-{{ $ingress_host_group.name }}
+      {{- end }}
+{{- end }}
 {{- end }}
   rules:
     {{- range $ingress_host_group.hosts }}
