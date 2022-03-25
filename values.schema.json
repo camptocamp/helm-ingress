@@ -1,0 +1,108 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "https://raw.githubusercontent.com/camptocamp/tilecloud-chain/master/tilecloud_chain/schema.json",
+  "type": "object",
+  "title": "configuration",
+  "description": "C2C CI utils configuration file",
+  "definitions": {},
+  "properties": {
+    "nameOverride": {
+      "type": "string",
+      "title": "nameOverride",
+      "description": "Override the name of the ingress"
+    },
+    "fullnameOverride": {
+      "type": "string",
+      "title": "fullnameOverride",
+      "description": "Override the fullname of the ingress"
+    },
+    "annotations": {
+      "type": "object",
+      "title": "annotations",
+      "description": "Annotations to add to the ingress",
+      "items": { "type": "string" }
+    },
+    "tls": {
+      "type": "object",
+      "title": "tls",
+      "description": "TLS configuration",
+      "properties": {
+        "secretNamePrefix": {
+          "type": "string",
+          "title": "secretNamePrefix",
+          "description": "Prefix of the secret name"
+        }
+      }
+    },
+    "hostsGroups": {
+      "type": "array",
+      "title": "hostsGroups",
+      "description": "Hosts groups",
+      "items": {
+        "type": "object",
+        "title": "hostsGroup",
+        "description": "Hosts group",
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "name",
+            "description": "Name of the hosts group, used in the ingress name"
+          },
+          "annotations": {
+            "type": "object",
+            "title": "annotations",
+            "description": "Specific annotations to the group",
+            "items": { "type": "string" }
+          },
+          "tls": {
+            "type": "boolean",
+            "title": "tls",
+            "description": "Enable TLS for the group",
+            "default": true
+          },
+          "hosts": {
+            "type": "array",
+            "title": "hosts",
+            "description": "The hosts name",
+            "items": {
+              "type": "string",
+              "title": "host",
+              "description": "The host name"
+            }
+          }
+        }
+      }
+    },
+    "paths": {
+      "type": "object",
+      "title": "paths",
+      "description": "The paths configuration",
+      "items": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string",
+            "title": "path",
+            "description": "The path"
+          },
+          "serviceRelease": {
+            "type": "string",
+            "title": "serviceRelease",
+            "description": "The name of the release of the service, by default same as current release"
+          },
+          "serviceName": {
+            "type": "string",
+            "title": "serviceName",
+            "description": "The name of the service (prefixed with the <release name>-)"
+          },
+          "servicePort": {
+            "type": "integer",
+            "title": "servicePort",
+            "description": "The port of the service",
+            "default": 80
+          }
+        }
+      }
+    }
+  }
+}

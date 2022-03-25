@@ -28,6 +28,10 @@ metadata:
     kubernetes.io/ingress.class: nginx
     kubernetes.io/tls-acme: "true"
 spec:
+# Add tls only if tls is not set to false.
+# With resent version of helm it should be:
+# if or ( not ( hasKey $ingress_host_group "tls" ) ) ( not ( eq $ingress_host_group.tls false ) )
+# without else section.
   tls:
     - hosts:
         - example.com
@@ -84,6 +88,10 @@ metadata:
     kubernetes.io/ingress.class: other
     kubernetes.io/tls-acme: "true"
 spec:
+# Add tls only if tls is not set to false.
+# With resent version of helm it should be:
+# if or ( not ( hasKey $ingress_host_group "tls" ) ) ( not ( eq $ingress_host_group.tls false ) )
+# without else section.
   tls:
     - hosts:
         - example3.com

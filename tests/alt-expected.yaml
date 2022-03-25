@@ -25,6 +25,10 @@ metadata:
     app.kubernetes.io/instance: test
     app.kubernetes.io/component: main
 spec:
+# Add tls only if tls is not set to false.
+# With resent version of helm it should be:
+# if or ( not ( hasKey $ingress_host_group "tls" ) ) ( not ( eq $ingress_host_group.tls false ) )
+# without else section.
   tls:
     - hosts:
         - example.com
@@ -53,6 +57,10 @@ metadata:
     app.kubernetes.io/instance: test
     app.kubernetes.io/component: main
 spec:
+# Add tls only if tls is not set to false.
+# With resent version of helm it should be:
+# if or ( not ( hasKey $ingress_host_group "tls" ) ) ( not ( eq $ingress_host_group.tls false ) )
+# without else section.
   rules:
     - host: example2.com
       http:
