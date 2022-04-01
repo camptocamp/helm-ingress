@@ -1,8 +1,8 @@
 {{- define "ingress.serviceName" -}}
 {{- if .path.serviceRelease }}
-{{- .path.serviceRelease }}-{{ .path.serviceName }}
+{{- printf "%s-%s" .path.serviceRelease .path.serviceName | trunc 53 | trimSuffix "-" }}
 {{- else -}}
-{{ include "common.fullname" . }}-{{ .path.serviceName }}
+{{- printf "%s-%s" .root.Release.Name .path.serviceName | trunc 53 | trimSuffix "-" }}
 {{- end -}}
 {{- end }}
 

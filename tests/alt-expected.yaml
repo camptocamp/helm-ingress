@@ -41,7 +41,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: test-ingress-root-service
+                name: test-root-service
                 port:
                   number: 80
 ---
@@ -69,6 +69,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: test-ingress-root-service
+                name: test-root-service
                 port:
                   number: 80
