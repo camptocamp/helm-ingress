@@ -2,3 +2,4 @@
 /charts/
 /tests/actual.yaml
 /tests/alt-actual.yaml
+/.github/changelog-generator-cache
