@@ -1,6 +1,11 @@
 nameOverride: ''
 fullnameOverride: ''
 
+# Also create the service, useful to do blue/green deployments switch
+createService: false
+# The used release name for the used application, used for Blue/Green switch, used in selector name app.kubernetes.io/instance
+applicationReleaseName: ''
+
 annotations: {}
 #  kubernetes.io/ingress.class: nginx
 #  kubernetes.io/tls-acme: "true"

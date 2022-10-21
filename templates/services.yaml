@@ -1,0 +1,26 @@
+{{- if .Values.createService -}}
+{{- range $name, $path := .Values.paths }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "common.fullname" ( dict "root" $ "service" . ) }}
+  labels: {{ include "common.labels" ( dict "root" $ "service" . ) | nindent 4 }}
+spec:
+  type: {{ default "ClusterIP" .type }}
+  ports:
+    - port: {{ default 80 .port }}
+      targetPort: {{ default "http" .targetPort }}
+      protocol: {{ default "TCP" .protocol }}
+      name: {{ default "http" .portName }}
+  {{- if eq ( default "ClusterIP" .type ) "ExternalName" }}
+  externalName: {{ .externalName }}
+  {{- else }}
+  selector:
+    app.kubernetes.io/instance: {{ $.Values.applicationReleaseName }}
+    {{- range $selectorName, $selectorValue := .selector }}
+    {{ $selectorName }}: {{ $selectorValue }}
+    {{- end }}
+  {{- end }}
+{{- end -}}
+{{- end -}}

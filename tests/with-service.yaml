@@ -1,0 +1,36 @@
+# Test the chart generation with a service, useful for blue/green switch
+
+createService: true
+applicationReleaseName: currentProd
+
+annotations:
+  acme.cert-manager.io/http01-edit-in-place: 'true'
+  cert-manager.io/cluster-issuer: letsencrypt-prod
+  ingress.kubernetes.io/ssl-redirect: 'true'
+  traefik.ingress.kubernetes.io/router.entrypoints: websecure
+  traefik.ingress.kubernetes.io/router.tls: 'true'
+
+hostsGroups:
+  - name: main
+    hosts:
+      - geomapfish-demo-2-7.camptocamp.com
+
+paths:
+  customFeedback:
+    path: /custom/
+    serviceName: custom-feedback
+    selector:
+      app.kubernetes.io/component: main
+      app.kubernetes.io/name: custom-feedback
+  geoportal:
+    path: /
+    serviceName: geoportal
+    selector:
+      app.kubernetes.io/component: geoportal
+      app.kubernetes.io/name: geomapfish
+  tiles:
+    path: /tiles/
+    serviceName: tiles
+    targetPort: 80
+    type: ExternalName
+    externalName: mutualize-int-tcc.gs-mutualize.svc.cluster.local
