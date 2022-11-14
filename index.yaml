@@ -2,6 +2,19 @@ apiVersion: v1
 entries:
   ingress:
   - apiVersion: v2
+    created: "2022-11-14T14:09:28.424825999Z"
+    dependencies:
+    - name: common
+      repository: https://camptocamp.github.io/helm-common
+      version: 0.3.0
+    description: A Helm chart for deploying an ingress
+    digest: e878b41fdda0dc44c46c84163ae83444b92775f09dd5cf82fe13d35198749670
+    home: http://camptocamp.com/
+    name: ingress
+    urls:
+    - https://github.com/camptocamp/helm-ingress/releases/download/0.3.0/ingress-0.3.0.tgz
+    version: 0.3.0
+  - apiVersion: v2
     created: "2022-05-19T08:02:58.038679859Z"
     dependencies:
     - name: common
@@ -79,4 +92,4 @@ entries:
     urls:
     - https://github.com/camptocamp/helm-ingress/releases/download/0.2.0/ingress-0.2.0.tgz
     version: 0.2.0
-generated: "2022-05-19T08:02:58.03870306Z"
+generated: "2022-11-14T14:09:28.425110624Z"
