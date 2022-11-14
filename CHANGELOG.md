@@ -1,5 +1,45 @@
 # Changelog
 
+## [0.3.0](https://github.com/camptocamp/helm-ingress/tree/0.3.0) (2022-11-14)
+
+[Full Changelog](https://github.com/camptocamp/helm-ingress/compare/0.2.5...0.3.0)
+
+#### :books: Documentation
+
+- Add generated changelog [\#22](https://github.com/camptocamp/helm-ingress/pull/22) ([sbrunner](https://github.com/sbrunner))
+
+#### :wrench: Build, CI, Tests, Code style
+
+- Fix repository in workflow used to delete old workflow runs [\#43](https://github.com/camptocamp/helm-ingress/pull/43) ([sbrunner](https://github.com/sbrunner))
+- Fix repository in workflow used to delete old workflow runs [\#42](https://github.com/camptocamp/helm-ingress/pull/42) ([sbrunner](https://github.com/sbrunner))
+- Add workflow to delete old workflow runs [\#40](https://github.com/camptocamp/helm-ingress/pull/40) ([sbrunner](https://github.com/sbrunner))
+- Fix the get config in changelog workflow [\#34](https://github.com/camptocamp/helm-ingress/pull/34) ([sbrunner](https://github.com/sbrunner))
+- Schedule Renovate on early Saturday [\#30](https://github.com/camptocamp/helm-ingress/pull/30) ([sbrunner](https://github.com/sbrunner))
+- Fix the changelog generator workflow [\#29](https://github.com/camptocamp/helm-ingress/pull/29) ([sbrunner](https://github.com/sbrunner))
+- Clean all the images already present in the image given by GitHub [\#28](https://github.com/camptocamp/helm-ingress/pull/28) ([sbrunner](https://github.com/sbrunner))
+- Update the changelog [\#27](https://github.com/camptocamp/helm-ingress/pull/27) ([c2c-bot-gis-ci](https://github.com/c2c-bot-gis-ci))
+- Update the changelog generation workflow [\#26](https://github.com/camptocamp/helm-ingress/pull/26) ([sbrunner](https://github.com/sbrunner))
+- Remove Dependabot configuration [\#25](https://github.com/camptocamp/helm-ingress/pull/25) ([sbrunner](https://github.com/sbrunner))
+- Update the changelog [\#23](https://github.com/camptocamp/helm-ingress/pull/23) ([github-actions[bot]](https://github.com/apps/github-actions))
+
+#### :package: Dependencies update
+
+- Update Helm release common to v0.3.0 [\#44](https://github.com/camptocamp/helm-ingress/pull/44) ([renovate[bot]](https://github.com/apps/renovate))
+- Update dependency c2cciutils to v1.3.11 [\#41](https://github.com/camptocamp/helm-ingress/pull/41) ([renovate[bot]](https://github.com/apps/renovate))
+- Update dependency c2cciutils to v1.3.10 [\#39](https://github.com/camptocamp/helm-ingress/pull/39) ([renovate[bot]](https://github.com/apps/renovate))
+- Update dependency c2cciutils to v1.3.9 [\#37](https://github.com/camptocamp/helm-ingress/pull/37) ([renovate[bot]](https://github.com/apps/renovate))
+- Update dependency c2cciutils to v1.3.7 [\#36](https://github.com/camptocamp/helm-ingress/pull/36) ([renovate[bot]](https://github.com/apps/renovate))
+- Update dependency c2cciutils to v1.3.5 [\#35](https://github.com/camptocamp/helm-ingress/pull/35) ([renovate[bot]](https://github.com/apps/renovate))
+- Update dependency c2cciutils to v1.3.0 [\#32](https://github.com/camptocamp/helm-ingress/pull/32) ([renovate[bot]](https://github.com/apps/renovate))
+- Update dependency c2cciutils to v1.2.1 [\#24](https://github.com/camptocamp/helm-ingress/pull/24) ([renovate[bot]](https://github.com/apps/renovate))
+- Update azure/setup-helm action to v3 [\#21](https://github.com/camptocamp/helm-ingress/pull/21) ([renovate[bot]](https://github.com/apps/renovate))
+- Update dependency c2cciutils to v1.2.0 [\#20](https://github.com/camptocamp/helm-ingress/pull/20) ([renovate[bot]](https://github.com/apps/renovate))
+- Update dependency c2cciutils to v1.2.dev20220620031414 [\#19](https://github.com/camptocamp/helm-ingress/pull/19) ([renovate[bot]](https://github.com/apps/renovate))
+- Update dependency c2cciutils to v1.2.dev20220609220245 [\#18](https://github.com/camptocamp/helm-ingress/pull/18) ([renovate[bot]](https://github.com/apps/renovate))
+- Update dependency c2cciutils to v1.2.dev20220601085126 [\#17](https://github.com/camptocamp/helm-ingress/pull/17) ([renovate[bot]](https://github.com/apps/renovate))
+- Update dependency c2cciutils to v1.2.dev20220527115520 [\#15](https://github.com/camptocamp/helm-ingress/pull/15) ([renovate[bot]](https://github.com/apps/renovate))
+- Update Helm release common to v0.2.3 [\#14](https://github.com/camptocamp/helm-ingress/pull/14) ([renovate[bot]](https://github.com/apps/renovate))
+
 ## [0.2.5](https://github.com/camptocamp/helm-ingress/tree/0.2.5) (2022-05-19)
 
 [Full Changelog](https://github.com/camptocamp/helm-ingress/compare/0.2.4...0.2.5)
