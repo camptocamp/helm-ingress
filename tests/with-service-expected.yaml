@@ -1,0 +1,132 @@
+---
+# Source: ingress/templates/configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: test-ingress
+  labels:
+    helm.sh/chart: ingress
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: ingress
+    app.kubernetes.io/instance: test
+    app.kubernetes.io/component: main
+data:
+  WEB_HOST: geomapfish-demo-2-7.camptocamp.com
+---
+# Source: ingress/templates/services.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: test-ingress-custom-fe
+  labels:
+    helm.sh/chart: ingress
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: ingress
+    app.kubernetes.io/instance: test
+    app.kubernetes.io/component: custom-feedback
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app.kubernetes.io/instance: currentProd
+    app.kubernetes.io/component: main
+    app.kubernetes.io/name: custom-feedback
+---
+# Source: ingress/templates/services.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: test-ingress-geoportal
+  labels:
+    helm.sh/chart: ingress
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: ingress
+    app.kubernetes.io/instance: test
+    app.kubernetes.io/component: geoportal
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app.kubernetes.io/instance: currentProd
+    app.kubernetes.io/component: geoportal
+    app.kubernetes.io/name: geomapfish
+---
+# Source: ingress/templates/services.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: test-ingress-tiles
+  labels:
+    helm.sh/chart: ingress
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: ingress
+    app.kubernetes.io/instance: test
+    app.kubernetes.io/component: tiles
+spec:
+  type: ExternalName
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+      name: http
+  externalName: mutualize-int-tcc.gs-mutualize.svc.cluster.local
+---
+# Source: ingress/templates/ingress.yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: test-ingress-main
+  labels:
+    helm.sh/chart: ingress
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: ingress
+    app.kubernetes.io/instance: test
+    app.kubernetes.io/component: main
+  annotations:
+    acme.cert-manager.io/http01-edit-in-place: "true"
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    ingress.kubernetes.io/ssl-redirect: "true"
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    traefik.ingress.kubernetes.io/router.tls: "true"
+spec:
+# Add tls only if tls is not set to false.
+# With resent version of helm it should be:
+# if or ( not ( hasKey $ingress_host_group "tls" ) ) ( not ( eq $ingress_host_group.tls false ) )
+# without else section.
+  tls:
+    - hosts:
+        - geomapfish-demo-2-7.camptocamp.com
+      secretName: test-ingress-main
+  rules:
+    - host: geomapfish-demo-2-7.camptocamp.com
+      http:
+        paths:
+          - path: "/custom/"
+            pathType: Prefix
+            backend:
+              service:
+                name: test-ingress-custom-fe
+                port:
+                  number: 80
+          - path: "/"
+            pathType: Prefix
+            backend:
+              service:
+                name: test-ingress-geoportal
+                port:
+                  number: 80
+          - path: "/tiles/"
+            pathType: Prefix
+            backend:
+              service:
+                name: test-ingress-tiles
+                port:
+                  number: 80

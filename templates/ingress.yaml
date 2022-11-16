@@ -54,19 +54,27 @@ spec:
       http:
         paths:
         {{- range $key, $path := $.Values.paths }}
-          - path: "{{ $path.path }}"
+          - path: "{{ .path }}"
             {{- if semverCompare ">=1.14-0" $.Capabilities.KubeVersion.GitVersion }}
             pathType: Prefix
             {{- end }}
             backend:
               {{- if semverCompare ">=1.14-0" $.Capabilities.KubeVersion.GitVersion }}
               service:
-                name: {{ include "ingress.serviceName" ( dict "root" $ "service" $.Values "path" $path ) }}
+                {{- if $.Values.createService }}
+                name: {{ include "common.fullname" ( dict "root" $ "service" . ) }}
+                {{- else }}
+                name: {{ include "ingress.serviceName" ( dict "root" $ "service" $.Values "path" . ) }}
+                {{- end }}
                 port:
-                  number: {{ $path.servicePort | default 80 }}
+                  number: {{ .servicePort | default 80 }}
               {{- else }}
-              serviceName: {{ include "ingress.serviceName" ( dict "root" $ "service" $.Values "path" $path ) }}
-              servicePort: {{ $path.servicePort | default 80 }}
+              {{- if $.Values.createService }}
+              serviceName: {{ include "common.fullname" ( dict "root" $ "service" . ) }}
+              {{- else }}
+              serviceName: {{ include "ingress.serviceName" ( dict "root" $ "service" $.Values "path" . ) }}
+              {{- end }}
+              servicePort: {{ .servicePort | default 80 }}
               {{- end -}}
         {{- end }}
     {{- end }}
