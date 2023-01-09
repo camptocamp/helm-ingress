@@ -1,5 +1,29 @@
 # Changelog
 
+## [0.4.0](https://github.com/camptocamp/helm-ingress/tree/0.4.0) (2023-01-04)
+
+[Full Changelog](https://github.com/camptocamp/helm-ingress/compare/0.3.0...0.4.0)
+
+#### :sparkles: Enhancements
+
+- Add a service to be able to do blue-green switch. [\#38](https://github.com/camptocamp/helm-ingress/pull/38) ([sbrunner](https://github.com/sbrunner))
+
+#### :wrench: Build, CI, Tests, Code style
+
+- Fix pull requests check workflow, use our CI token [\#54](https://github.com/camptocamp/helm-ingress/pull/54) ([sbrunner](https://github.com/sbrunner))
+- Configure Renovate for kubernetes [\#51](https://github.com/camptocamp/helm-ingress/pull/51) ([sbrunner](https://github.com/sbrunner))
+- Configure Renovate to run monthly [\#50](https://github.com/camptocamp/helm-ingress/pull/50) ([sbrunner](https://github.com/sbrunner))
+- Configure Mend Bolt [\#49](https://github.com/camptocamp/helm-ingress/pull/49) ([sbrunner](https://github.com/sbrunner))
+- Upgrade deprecated set-output commands [\#46](https://github.com/camptocamp/helm-ingress/pull/46) ([sbrunner](https://github.com/sbrunner))
+- Update the changelog [\#45](https://github.com/camptocamp/helm-ingress/pull/45) ([c2c-bot-gis-ci](https://github.com/c2c-bot-gis-ci))
+
+#### :package: Dependencies update
+
+- Update Helm release common to v0.4.1 [\#53](https://github.com/camptocamp/helm-ingress/pull/53) ([renovate[bot]](https://github.com/apps/renovate))
+- Update dependency c2cciutils to v1.4.4 [\#52](https://github.com/camptocamp/helm-ingress/pull/52) ([renovate[bot]](https://github.com/apps/renovate))
+- Update dependency c2cciutils to v1.4.0 [\#48](https://github.com/camptocamp/helm-ingress/pull/48) ([renovate[bot]](https://github.com/apps/renovate))
+- Update dependency c2cciutils to v1.3.12 [\#47](https://github.com/camptocamp/helm-ingress/pull/47) ([renovate[bot]](https://github.com/apps/renovate))
+
 ## [0.3.0](https://github.com/camptocamp/helm-ingress/tree/0.3.0) (2022-11-14)
 
 [Full Changelog](https://github.com/camptocamp/helm-ingress/compare/0.2.5...0.3.0)
