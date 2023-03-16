@@ -5,4 +5,3 @@
 {{- printf "%s-%s" .root.Release.Name .path.serviceName | trunc 53 | trimSuffix "-" }}
 {{- end -}}
 {{- end }}
-
