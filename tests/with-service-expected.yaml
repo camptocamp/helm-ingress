@@ -17,7 +17,7 @@ data:
 apiVersion: v1
 kind: Service
 metadata:
-  name: test-ingress-custom-fe
+  name: test-ingress-custom-feedback
   labels:
     helm.sh/chart: ingress
     app.kubernetes.io/managed-by: Helm
@@ -113,7 +113,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: test-ingress-custom-fe
+                name: test-ingress-custom-feedback
                 port:
                   number: 80
           - path: "/"
