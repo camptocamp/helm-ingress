@@ -1,24 +1,25 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "https://raw.githubusercontent.com/camptocamp/tilecloud-chain/master/tilecloud_chain/schema.json",
   "type": "object",
-  "title": "HELM Ingress configuration",
-  "additionalProperties": false,
+  "title": "configuration",
+  "description": "C2C CI utils configuration file",
   "definitions": {},
   "properties": {
     "nameOverride": {
       "type": "string",
       "title": "nameOverride",
-      "description": "Override the name of the Ingress"
+      "description": "Override the name of the ingress"
     },
     "fullnameOverride": {
       "type": "string",
       "title": "fullnameOverride",
-      "description": "Override the fullname of the Ingress"
+      "description": "Override the fullname of the ingress"
     },
     "annotations": {
       "type": "object",
       "title": "annotations",
-      "description": "Annotations to add to the Ingress",
+      "description": "Annotations to add to the ingress",
       "items": { "type": "string" }
     },
     "tls": {
@@ -45,7 +46,7 @@
           "name": {
             "type": "string",
             "title": "name",
-            "description": "Name of the hosts group, used in the Ingress name"
+            "description": "Name of the hosts group, used in the ingress name"
           },
           "annotations": {
             "type": "object",

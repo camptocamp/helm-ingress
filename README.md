@@ -16,10 +16,6 @@ To switch between blue and green applications, we need to set appropriated selec
 
 See https://github.com/camptocamp/helm-ingress/wiki/Blue-Green-switch
 
-## Schema documentation
-
-Documentation based on the schema defined in [values.md](./values.md).
-
 ## Contributing
 
 Install the pre-commit hooks:
