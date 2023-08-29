@@ -1,31 +1,83 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema",
-  "$id": "https://raw.githubusercontent.com/camptocamp/tilecloud-chain/master/tilecloud_chain/schema.json",
   "type": "object",
-  "title": "configuration",
-  "description": "C2C CI utils configuration file",
-  "definitions": {},
-  "properties": {
+  "title": "HELM Ingress configuration",
+  "definitions": {
     "nameOverride": {
       "type": "string",
-      "title": "nameOverride",
-      "description": "Override the name of the ingress"
+      "description": "[helm-common] Override the name"
     },
     "fullnameOverride": {
       "type": "string",
-      "title": "fullnameOverride",
-      "description": "Override the fullname of the ingress"
+      "description": "[helm-common] Override the fullname"
+    },
+    "releaseTrunc": {
+      "type": "integer",
+      "description": "[helm-common] The release trunk length",
+      "default": 20
+    },
+    "prefixTrunc": {
+      "type": "integer",
+      "description": "[helm-common] The prefix trunk length (release anf chart name)",
+      "default": 40
+    },
+    "labels": {
+      "type": "object",
+      "description": "[helm-common] Pod labels",
+      "additionalProperties": {
+        "type": "string"
+      }
     },
     "annotations": {
       "type": "object",
-      "title": "annotations",
-      "description": "Annotations to add to the ingress",
-      "items": { "type": "string" }
+      "description": "[helm-common] Pod annotations",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "serviceName": {
+      "type": "string",
+      "description": "[helm-common] The name of the service (not Kubernetes service), this will postfix the name"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "common": {},
+    "nameOverride": {
+      "$ref": "#/definitions/nameOverride"
+    },
+    "fullnameOverride": {
+      "$ref": "#/definitions/fullnameOverride"
+    },
+    "serviceName": {
+      "$ref": "#/definitions/serviceName"
+    },
+    "releaseTrunc": {
+      "$ref": "#/definitions/releaseTrunc"
+    },
+    "prefixTrunc": {
+      "$ref": "#/definitions/prefixTrunc"
+    },
+    "labels": {
+      "$ref": "#/definitions/labels"
+    },
+    "annotations": {
+      "$ref": "#/definitions/annotations"
+    },
+    "applicationReleaseName": {
+      "type": "string",
+      "description": "The name of the release of the application, used to do the blue-green switch."
+    },
+    "createService": {
+      "type": "boolean",
+      "description": "Create the service, the service is used to do the blue-green switch.",
+      "default": false
     },
     "tls": {
       "type": "object",
       "title": "tls",
       "description": "TLS configuration",
+      "additionalProperties": false,
       "properties": {
         "secretNamePrefix": {
           "type": "string",
@@ -42,17 +94,18 @@
         "type": "object",
         "title": "hostsGroup",
         "description": "Hosts group",
+        "additionalProperties": false,
         "properties": {
           "name": {
             "type": "string",
             "title": "name",
-            "description": "Name of the hosts group, used in the ingress name"
+            "description": "Name of the hosts group, used in the Ingress name"
           },
           "annotations": {
             "type": "object",
             "title": "annotations",
             "description": "Specific annotations to the group",
-            "items": { "type": "string" }
+            "additionalProperties": { "type": "string" }
           },
           "tls": {
             "type": "boolean",
@@ -77,29 +130,72 @@
       "type": "object",
       "title": "paths",
       "description": "The paths configuration",
-      "items": {
+      "additionalProperties": {
         "type": "object",
+        "additionalProperties": false,
         "properties": {
-          "path": {
-            "type": "string",
-            "title": "path",
-            "description": "The path"
+          "nameOverride": {
+            "$ref": "#/definitions/nameOverride"
           },
-          "serviceRelease": {
-            "type": "string",
-            "title": "serviceRelease",
-            "description": "The name of the release of the service, by default same as current release"
+          "fullnameOverride": {
+            "$ref": "#/definitions/fullnameOverride"
           },
           "serviceName": {
+            "$ref": "#/definitions/serviceName"
+          },
+          "releaseTrunc": {
+            "$ref": "#/definitions/releaseTrunc"
+          },
+          "prefixTrunc": {
+            "$ref": "#/definitions/prefixTrunc"
+          },
+          "labels": {
+            "$ref": "#/definitions/labels"
+          },
+          "annotations": {
+            "$ref": "#/definitions/annotations"
+          },
+          "type": {
             "type": "string",
-            "title": "serviceName",
-            "description": "The name of the service (prefixed with the <release name>-)"
+            "description": "The type of the service",
+            "default": "ClusterIP"
+          },
+          "port": {
+            "type": "integer",
+            "default": 80
+          },
+          "targetPort": {
+            "type": ["string", "integer"]
+          },
+          "protocol": {
+            "type": "string",
+            "default": "TCP"
+          },
+          "portName": {
+            "type": "string",
+            "description": "The name of the port",
+            "default": "http"
+          },
+          "externalName": {
+            "type": "string",
+            "description": "The external name of the service"
+          },
+          "serviceRelease": {
+            "type": "string"
           },
           "servicePort": {
-            "type": "integer",
-            "title": "servicePort",
-            "description": "The port of the service",
-            "default": 80
+            "type": "integer"
+          },
+          "selector": {
+            "type": "object",
+            "description": "The selector of the Pod",
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "path": {
+            "type": "string",
+            "description": "The path of the service"
           }
         }
       }
