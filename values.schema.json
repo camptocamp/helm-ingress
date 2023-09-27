@@ -18,7 +18,7 @@
     },
     "prefixTrunc": {
       "type": "integer",
-      "description": "[helm-common] The prefix trunk length (release anf chart name)",
+      "description": "[helm-common] The prefix trunk length (release and chart name)",
       "default": 40
     },
     "labels": {
@@ -82,19 +82,18 @@
       "properties": {
         "secretNamePrefix": {
           "type": "string",
-          "title": "secretNamePrefix",
+          "title": "Secret name prefix",
           "description": "Prefix of the secret name"
         }
       }
     },
     "hostsGroups": {
       "type": "array",
-      "title": "hostsGroups",
-      "description": "Hosts groups",
+      "title": "Hosts groups",
+      "description": "Defined a group of hosts that will be in the same Ingress",
       "items": {
         "type": "object",
-        "title": "hostsGroup",
-        "description": "Hosts group",
+        "title": "Host group",
         "additionalProperties": false,
         "properties": {
           "name": {
