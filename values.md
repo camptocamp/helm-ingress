@@ -45,6 +45,7 @@
     - **`targetPort`** _(['string', 'integer'])_
     - **`protocol`** _(string)_: Default: `"TCP"`.
     - **`portName`** _(string)_: The name of the port. Default: `"http"`.
+    - **`appProtocol`** _(string)_: The application protocol.
     - **`externalName`** _(string)_: The external name of the service.
     - **`serviceRelease`** _(string)_
     - **`servicePort`** _(integer)_

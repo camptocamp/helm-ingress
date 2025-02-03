@@ -25,6 +25,7 @@ paths:
   geoportal:
     path: /
     serviceName: geoportal
+    appProtocol: test-appProtocol
     selector:
       app.kubernetes.io/component: geoportal
       app.kubernetes.io/name: geomapfish
