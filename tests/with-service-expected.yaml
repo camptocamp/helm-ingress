@@ -54,6 +54,7 @@ spec:
       targetPort: http
       protocol: TCP
       name: http
+      appProtocol: test-appProtocol
   selector:
     app.kubernetes.io/instance: currentProd
     app.kubernetes.io/component: geoportal

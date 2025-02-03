@@ -214,6 +214,10 @@
             "description": "The name of the port",
             "default": "http"
           },
+          "appProtocol": {
+            "type": "string",
+            "description": "The application protocol"
+          },
           "externalName": {
             "type": "string",
             "description": "The external name of the service"

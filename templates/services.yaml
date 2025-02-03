@@ -13,6 +13,9 @@ spec:
       targetPort: {{ default "http" .targetPort }}
       protocol: {{ default "TCP" .protocol }}
       name: {{ default "http" .portName }}
+      {{- if .appProtocol }}
+      appProtocol: {{ .appProtocol }}
+      {{- end }}
   {{- if eq ( default "ClusterIP" .type ) "ExternalName" }}
   externalName: {{ .externalName }}
   {{- else }}
