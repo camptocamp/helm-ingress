@@ -20,6 +20,13 @@ See https://github.com/camptocamp/helm-ingress/wiki/Blue-Green-switch
 
 Documentation based on the schema defined in [values.md](./values.md).
 
+## Installation
+
+```bash
+helm repo add ingress https://camptocamp.github.io/helm-ingress/
+helm install my-release ingress/ingress --values=my-values.yaml
+```
+
 ## Contributing
 
 Install the pre-commit hooks:
