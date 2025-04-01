@@ -2,56 +2,56 @@
 
 ## Properties
 
-- **`global`** _(object)_: Can contain additional properties.
-  - **`releaseNameOverride`**: Refer to _[#/definitions/releaseNameOverride](#definitions/releaseNameOverride)_.
-  - **`releaseTrunc`**: Refer to _[#/definitions/releaseTrunc](#definitions/releaseTrunc)_.
-  - **`nameTrunc`**: Refer to _[#/definitions/nameTrunc](#definitions/nameTrunc)_.
-  - **`prefixTrunc`**: Refer to _[#/definitions/prefixTrunc](#definitions/prefixTrunc)_.
-- **`common`**
-- **`nameOverride`**: Refer to _[#/definitions/nameOverride](#definitions/nameOverride)_.
-- **`fullnameOverride`**: Refer to _[#/definitions/fullnameOverride](#definitions/fullnameOverride)_.
-- **`releaseNameOverride`**: Refer to _[#/definitions/releaseNameOverride](#definitions/releaseNameOverride)_.
-- **`serviceName`**: Refer to _[#/definitions/serviceName](#definitions/serviceName)_.
-- **`releaseTrunc`**: Refer to _[#/definitions/releaseTrunc](#definitions/releaseTrunc)_.
-- **`nameTrunc`**: Refer to _[#/definitions/nameTrunc](#definitions/nameTrunc)_.
-- **`prefixTrunc`**: Refer to _[#/definitions/prefixTrunc](#definitions/prefixTrunc)_.
-- **`labels`**: Refer to _[#/definitions/labels](#definitions/labels)_.
-- **`annotations`**: Refer to _[#/definitions/annotations](#definitions/annotations)_.
-- **`applicationReleaseName`** _(string)_: The name of the release of the application, used to do the blue-green switch.
-- **`createService`** _(boolean)_: Create the service, the service is used to do the blue-green switch. Default: `false`.
-- **`tls`** _(object)_: TLS configuration. Cannot contain additional properties.
-  - **`secretNamePrefix`** _(string)_: Prefix of the secret name.
-- **`hostsGroups`** _(array)_: Defined a group of hosts that will be in the same Ingress.
-  - **Items** _(object)_: Cannot contain additional properties.
-    - **`name`** _(string)_: Name of the hosts group, used in the Ingress name.
-    - **`annotations`** _(object)_: Specific annotations to the group. Can contain additional properties.
-      - **Additional properties** _(string)_
-    - **`tls`** _(boolean)_: Enable TLS for the group. Default: `true`.
-    - **`hosts`** _(array)_: The hosts name.
-      - **Items** _(string)_: The host name.
-- **`paths`** _(object)_: The paths configuration. Can contain additional properties.
-  - **Additional properties** _(object)_: Cannot contain additional properties.
-    - **`nameOverride`**: Refer to _[#/definitions/nameOverride](#definitions/nameOverride)_.
-    - **`fullnameOverride`**: Refer to _[#/definitions/fullnameOverride](#definitions/fullnameOverride)_.
-    - **`releaseNameOverride`**: Refer to _[#/definitions/releaseNameOverride](#definitions/releaseNameOverride)_.
-    - **`serviceName`**: Refer to _[#/definitions/serviceName](#definitions/serviceName)_.
-    - **`releaseTrunc`**: Refer to _[#/definitions/releaseTrunc](#definitions/releaseTrunc)_.
-    - **`nameTrunc`**: Refer to _[#/definitions/nameTrunc](#definitions/nameTrunc)_.
-    - **`prefixTrunc`**: Refer to _[#/definitions/prefixTrunc](#definitions/prefixTrunc)_.
-    - **`labels`**: Refer to _[#/definitions/labels](#definitions/labels)_.
-    - **`annotations`**: Refer to _[#/definitions/annotations](#definitions/annotations)_.
-    - **`type`** _(string)_: The type of the service. Default: `"ClusterIP"`.
-    - **`port`** _(integer)_: Default: `80`.
-    - **`targetPort`** _(['string', 'integer'])_
-    - **`protocol`** _(string)_: Default: `"TCP"`.
-    - **`portName`** _(string)_: The name of the port. Default: `"http"`.
-    - **`appProtocol`** _(string)_: The application protocol.
-    - **`externalName`** _(string)_: The external name of the service.
-    - **`serviceRelease`** _(string)_
-    - **`servicePort`** _(integer)_
-    - **`selector`** _(object)_: The selector of the Pod. Can contain additional properties.
-      - **Additional properties** _(string)_
-    - **`path`** _(string)_: The path of the service.
+- <a id="properties/global"></a>**`global`** _(object)_: Can contain additional properties.
+  - <a id="properties/global/properties/releaseNameOverride"></a>**`releaseNameOverride`**: Refer to _[#/definitions/releaseNameOverride](#definitions/releaseNameOverride)_.
+  - <a id="properties/global/properties/releaseTrunc"></a>**`releaseTrunc`**: Refer to _[#/definitions/releaseTrunc](#definitions/releaseTrunc)_.
+  - <a id="properties/global/properties/nameTrunc"></a>**`nameTrunc`**: Refer to _[#/definitions/nameTrunc](#definitions/nameTrunc)_.
+  - <a id="properties/global/properties/prefixTrunc"></a>**`prefixTrunc`**: Refer to _[#/definitions/prefixTrunc](#definitions/prefixTrunc)_.
+- <a id="properties/common"></a>**`common`**
+- <a id="properties/nameOverride"></a>**`nameOverride`**: Refer to _[#/definitions/nameOverride](#definitions/nameOverride)_.
+- <a id="properties/fullnameOverride"></a>**`fullnameOverride`**: Refer to _[#/definitions/fullnameOverride](#definitions/fullnameOverride)_.
+- <a id="properties/releaseNameOverride"></a>**`releaseNameOverride`**: Refer to _[#/definitions/releaseNameOverride](#definitions/releaseNameOverride)_.
+- <a id="properties/serviceName"></a>**`serviceName`**: Refer to _[#/definitions/serviceName](#definitions/serviceName)_.
+- <a id="properties/releaseTrunc"></a>**`releaseTrunc`**: Refer to _[#/definitions/releaseTrunc](#definitions/releaseTrunc)_.
+- <a id="properties/nameTrunc"></a>**`nameTrunc`**: Refer to _[#/definitions/nameTrunc](#definitions/nameTrunc)_.
+- <a id="properties/prefixTrunc"></a>**`prefixTrunc`**: Refer to _[#/definitions/prefixTrunc](#definitions/prefixTrunc)_.
+- <a id="properties/labels"></a>**`labels`**: Refer to _[#/definitions/labels](#definitions/labels)_.
+- <a id="properties/annotations"></a>**`annotations`**: Refer to _[#/definitions/annotations](#definitions/annotations)_.
+- <a id="properties/applicationReleaseName"></a>**`applicationReleaseName`** _(string)_: The name of the release of the application, used to do the blue-green switch.
+- <a id="properties/createService"></a>**`createService`** _(boolean)_: Create the service, the service is used to do the blue-green switch. Default: `false`.
+- <a id="properties/tls"></a>**`tls`** _(object)_: TLS configuration. Cannot contain additional properties.
+  - <a id="properties/tls/properties/secretNamePrefix"></a>**`secretNamePrefix`** _(string)_: Prefix of the secret name.
+- <a id="properties/hostsGroups"></a>**`hostsGroups`** _(array)_: Defined a group of hosts that will be in the same Ingress.
+  - <a id="properties/hostsGroups/items"></a>**Items** _(object)_: Cannot contain additional properties.
+    - <a id="properties/hostsGroups/items/properties/name"></a>**`name`** _(string)_: Name of the hosts group, used in the Ingress name.
+    - <a id="properties/hostsGroups/items/properties/annotations"></a>**`annotations`** _(object)_: Specific annotations to the group. Can contain additional properties.
+      - <a id="properties/hostsGroups/items/properties/annotations/additionalProperties"></a>**Additional properties** _(string)_
+    - <a id="properties/hostsGroups/items/properties/tls"></a>**`tls`** _(boolean)_: Enable TLS for the group. Default: `true`.
+    - <a id="properties/hostsGroups/items/properties/hosts"></a>**`hosts`** _(array)_: The hosts name.
+      - <a id="properties/hostsGroups/items/properties/hosts/items"></a>**Items** _(string)_: The host name.
+- <a id="properties/paths"></a>**`paths`** _(object)_: The paths configuration. Can contain additional properties.
+  - <a id="properties/paths/additionalProperties"></a>**Additional properties** _(object)_: Cannot contain additional properties.
+    - <a id="properties/paths/additionalProperties/properties/nameOverride"></a>**`nameOverride`**: Refer to _[#/definitions/nameOverride](#definitions/nameOverride)_.
+    - <a id="properties/paths/additionalProperties/properties/fullnameOverride"></a>**`fullnameOverride`**: Refer to _[#/definitions/fullnameOverride](#definitions/fullnameOverride)_.
+    - <a id="properties/paths/additionalProperties/properties/releaseNameOverride"></a>**`releaseNameOverride`**: Refer to _[#/definitions/releaseNameOverride](#definitions/releaseNameOverride)_.
+    - <a id="properties/paths/additionalProperties/properties/serviceName"></a>**`serviceName`**: Refer to _[#/definitions/serviceName](#definitions/serviceName)_.
+    - <a id="properties/paths/additionalProperties/properties/releaseTrunc"></a>**`releaseTrunc`**: Refer to _[#/definitions/releaseTrunc](#definitions/releaseTrunc)_.
+    - <a id="properties/paths/additionalProperties/properties/nameTrunc"></a>**`nameTrunc`**: Refer to _[#/definitions/nameTrunc](#definitions/nameTrunc)_.
+    - <a id="properties/paths/additionalProperties/properties/prefixTrunc"></a>**`prefixTrunc`**: Refer to _[#/definitions/prefixTrunc](#definitions/prefixTrunc)_.
+    - <a id="properties/paths/additionalProperties/properties/labels"></a>**`labels`**: Refer to _[#/definitions/labels](#definitions/labels)_.
+    - <a id="properties/paths/additionalProperties/properties/annotations"></a>**`annotations`**: Refer to _[#/definitions/annotations](#definitions/annotations)_.
+    - <a id="properties/paths/additionalProperties/properties/type"></a>**`type`** _(string)_: The type of the service. Default: `"ClusterIP"`.
+    - <a id="properties/paths/additionalProperties/properties/port"></a>**`port`** _(integer)_: Default: `80`.
+    - <a id="properties/paths/additionalProperties/properties/targetPort"></a>**`targetPort`** _(['string', 'integer'])_
+    - <a id="properties/paths/additionalProperties/properties/protocol"></a>**`protocol`** _(string)_: Default: `"TCP"`.
+    - <a id="properties/paths/additionalProperties/properties/portName"></a>**`portName`** _(string)_: The name of the port. Default: `"http"`.
+    - <a id="properties/paths/additionalProperties/properties/appProtocol"></a>**`appProtocol`** _(string)_: The application protocol.
+    - <a id="properties/paths/additionalProperties/properties/externalName"></a>**`externalName`** _(string)_: The external name of the service.
+    - <a id="properties/paths/additionalProperties/properties/serviceRelease"></a>**`serviceRelease`** _(string)_
+    - <a id="properties/paths/additionalProperties/properties/servicePort"></a>**`servicePort`** _(integer)_
+    - <a id="properties/paths/additionalProperties/properties/selector"></a>**`selector`** _(object)_: The selector of the Pod. Can contain additional properties.
+      - <a id="properties/paths/additionalProperties/properties/selector/additionalProperties"></a>**Additional properties** _(string)_
+    - <a id="properties/paths/additionalProperties/properties/path"></a>**`path`** _(string)_: The path of the service.
 
 ## Definitions
 
@@ -62,7 +62,7 @@
 - <a id="definitions/nameTrunc"></a>**`nameTrunc`** _(integer)_: [helm-common] The chart name trunk length (can be in the service, values or global). Default: `63`.
 - <a id="definitions/prefixTrunc"></a>**`prefixTrunc`** _(integer)_: [helm-common] The prefix trunk length (release and chart name) (can be in the service, values or global). Default: `40`.
 - <a id="definitions/labels"></a>**`labels`** _(object)_: [helm-common] Pod labels. Can contain additional properties.
-  - **Additional properties** _(string)_
+  - <a id="definitions/labels/additionalProperties"></a>**Additional properties** _(string)_
 - <a id="definitions/annotations"></a>**`annotations`** _(object)_: [helm-common] Pod annotations. Can contain additional properties.
-  - **Additional properties** _(string)_
+  - <a id="definitions/annotations/additionalProperties"></a>**Additional properties** _(string)_
 - <a id="definitions/serviceName"></a>**`serviceName`** _(string)_: [helm-common] The name of the service (not Kubernetes service), this will postfix the name.
