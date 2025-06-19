@@ -119,6 +119,21 @@
         }
       }
     },
+    "traefikMiddleware": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable Traefik middleware",
+          "default": true
+        },
+        "spec": {
+          "type": "object",
+          "description": "Traefik middleware specification"
+        }
+      }
+    },
     "hostsGroups": {
       "type": "array",
       "title": "Hosts groups",

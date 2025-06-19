@@ -27,6 +27,7 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
     kubernetes.io/tls-acme: "true"
+    traefik.ingress.kubernetes.io/router.middlewares: default-test-ingress@kubernetescrd
 spec:
 # Add tls only if tls is not set to false.
 # With resent version of helm it should be:
@@ -87,6 +88,7 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: other
     kubernetes.io/tls-acme: "true"
+    traefik.ingress.kubernetes.io/router.middlewares: default-test-ingress@kubernetescrd
 spec:
 # Add tls only if tls is not set to false.
 # With resent version of helm it should be:
@@ -114,3 +116,24 @@ spec:
                 name: test-root-service
                 port:
                   number: 80
+---
+# Source: ingress/templates/traefik-middleware.yaml
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: test-ingress
+  labels:
+    helm.sh/chart: ingress
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: ingress
+    app.kubernetes.io/instance: test
+    app.kubernetes.io/component: main
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    kubernetes.io/tls-acme: "true"
+spec:
+  headers:
+    customResponseHeaders:
+      Access-Control-Allow-Headers: '*'
+      Access-Control-Allow-Methods: GET, OPTIONS
+      Access-Control-Allow-Origin: '*'

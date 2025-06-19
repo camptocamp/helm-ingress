@@ -2,6 +2,14 @@ annotations:
   kubernetes.io/ingress.class: nginx
   kubernetes.io/tls-acme: 'true'
 
+traefikMiddleware:
+  spec:
+    headers:
+      customResponseHeaders:
+        Access-Control-Allow-Methods: 'GET, OPTIONS'
+        Access-Control-Allow-Origin: '*'
+        Access-Control-Allow-Headers: '*'
+
 hostsGroups:
   - name: main
     hosts:

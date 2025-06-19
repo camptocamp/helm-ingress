@@ -18,6 +18,11 @@ metadata:
   {{- else }}
   {{- include "common.metadata" ( dict "root" $ "service" $.Values ) | nindent 2 }}
   {{- end }}
+  {{- if ( default ( dict ) $.Values.traefikMiddleware ) }}
+  {{- if ( default true $.Values.traefikMiddleware.enabled ) }}
+    traefik.ingress.kubernetes.io/router.middlewares: {{ $.Release.Namespace }}-{{ include "common.fullname" ( dict "root" $ "service" $.Values ) }}@kubernetescrd
+  {{- end }}
+  {{- end }}
 spec:
 # Add tls only if tls is not set to false.
 # With resent version of helm it should be:
