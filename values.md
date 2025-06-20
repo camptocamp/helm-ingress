@@ -21,6 +21,9 @@
 - <a id="properties/createService"></a>**`createService`** _(boolean)_: Create the service, the service is used to do the blue-green switch. Default: `false`.
 - <a id="properties/tls"></a>**`tls`** _(object)_: TLS configuration. Cannot contain additional properties.
   - <a id="properties/tls/properties/secretNamePrefix"></a>**`secretNamePrefix`** _(string)_: Prefix of the secret name.
+- <a id="properties/traefikMiddleware"></a>**`traefikMiddleware`** _(object)_: Cannot contain additional properties.
+  - <a id="properties/traefikMiddleware/properties/enabled"></a>**`enabled`** _(boolean)_: Enable Traefik middleware. Default: `true`.
+  - <a id="properties/traefikMiddleware/properties/spec"></a>**`spec`** _(object)_: Traefik middleware specification.
 - <a id="properties/hostsGroups"></a>**`hostsGroups`** _(array)_: Defined a group of hosts that will be in the same Ingress.
   - <a id="properties/hostsGroups/items"></a>**Items** _(object)_: Cannot contain additional properties.
     - <a id="properties/hostsGroups/items/properties/name"></a>**`name`** _(string)_: Name of the hosts group, used in the Ingress name.

@@ -76,6 +76,11 @@ jobs:
       - name: Setup k3s/k3d
         run: c2cciutils-k8s-install
 
+      - name: Install Traefik CRD
+        run: |
+          curl https://raw.githubusercontent.com/traefik/traefik-helm-chart/v36.1.0/traefik/crds/traefik.io_middlewares.yaml --output /tmp/traefik-crd.yaml
+          kubectl apply -f /tmp/traefik-crd.yaml
+
       - run: helm lint --values=tests/values.yaml .
       - run: kubectl apply -f tests/expected.yaml
       - run: kubectl delete -f tests/expected.yaml || true

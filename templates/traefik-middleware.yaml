@@ -1,0 +1,12 @@
+{{- $fullName := include "common.fullname" ( dict "root" $ "service" $.Values ) }}
+{{- if ( default ( dict ) $.Values.traefikMiddleware ) }}
+{{- if ( default true $.Values.traefikMiddleware.enabled ) }}
+---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: {{ include "common.fullname" ( dict "root" $ "service" $.Values ) }}
+  {{- include "common.metadata" ( dict "root" $ "service" $.Values ) | nindent 2 }}
+spec: {{- $.Values.traefikMiddleware.spec | toYaml | nindent 2 }}
+{{- end }}
+{{- end }}
