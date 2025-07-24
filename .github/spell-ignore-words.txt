@@ -2,3 +2,5 @@ fullname
 tls
 Kubernetes
 Traefik
+traefik-ingress-route
+IngressRoute
