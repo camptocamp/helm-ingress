@@ -7,7 +7,6 @@
   - <a id="properties/global/properties/releaseTrunc"></a>**`releaseTrunc`**: Refer to _[#/definitions/releaseTrunc](#definitions/releaseTrunc)_.
   - <a id="properties/global/properties/nameTrunc"></a>**`nameTrunc`**: Refer to _[#/definitions/nameTrunc](#definitions/nameTrunc)_.
   - <a id="properties/global/properties/prefixTrunc"></a>**`prefixTrunc`**: Refer to _[#/definitions/prefixTrunc](#definitions/prefixTrunc)_.
-- <a id="properties/common"></a>**`common`**
 - <a id="properties/nameOverride"></a>**`nameOverride`**: Refer to _[#/definitions/nameOverride](#definitions/nameOverride)_.
 - <a id="properties/fullnameOverride"></a>**`fullnameOverride`**: Refer to _[#/definitions/fullnameOverride](#definitions/fullnameOverride)_.
 - <a id="properties/releaseNameOverride"></a>**`releaseNameOverride`**: Refer to _[#/definitions/releaseNameOverride](#definitions/releaseNameOverride)_.
@@ -45,7 +44,7 @@
     - <a id="properties/paths/additionalProperties/properties/annotations"></a>**`annotations`**: Refer to _[#/definitions/annotations](#definitions/annotations)_.
     - <a id="properties/paths/additionalProperties/properties/type"></a>**`type`** _(string)_: The type of the service. Default: `"ClusterIP"`.
     - <a id="properties/paths/additionalProperties/properties/port"></a>**`port`** _(integer)_: Default: `80`.
-    - <a id="properties/paths/additionalProperties/properties/targetPort"></a>**`targetPort`** _(['string', 'integer'])_
+    - <a id="properties/paths/additionalProperties/properties/targetPort"></a>**`targetPort`** _(string or integer)_
     - <a id="properties/paths/additionalProperties/properties/protocol"></a>**`protocol`** _(string)_: Default: `"TCP"`.
     - <a id="properties/paths/additionalProperties/properties/portName"></a>**`portName`** _(string)_: The name of the port. Default: `"http"`.
     - <a id="properties/paths/additionalProperties/properties/appProtocol"></a>**`appProtocol`** _(string)_: The application protocol.
