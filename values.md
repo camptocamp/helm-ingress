@@ -29,7 +29,7 @@
     - <a id="properties/hostsGroups/items/properties/name"></a>**`name`** _(string)_: Name of the hosts group, used in the Ingress name.
     - <a id="properties/hostsGroups/items/properties/annotations"></a>**`annotations`** _(object)_: Specific annotations to the group. Can contain additional properties.
       - <a id="properties/hostsGroups/items/properties/annotations/additionalProperties"></a>**Additional properties** _(string)_
-    - <a id="properties/hostsGroups/items/properties/type"></a>**`type`** _(string)_: The type of the group, can be 'ingress', 'traefik-ingress-route'. Must be one of: `["ingress", "traefik-ingress-route"]`. Default: `"ingress"`.
+    - <a id="properties/hostsGroups/items/properties/type"></a>**`type`** _(string)_: The type of the group, can be 'ingress', 'traefik-ingress-route'. Must be one of: "ingress" or "traefik-ingress-route". Default: `"ingress"`.
     - <a id="properties/hostsGroups/items/properties/tls"></a>**`tls`** _(boolean)_: Enable TLS for the group. Default: `true`.
     - <a id="properties/hostsGroups/items/properties/hosts"></a>**`hosts`** _(array)_: The hosts name.
       - <a id="properties/hostsGroups/items/properties/hosts/items"></a>**Items** _(string)_: The host name.
