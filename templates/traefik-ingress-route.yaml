@@ -1,0 +1,96 @@
+{{- $fullName := include "common.fullname" ( dict "root" . "service" .Values ) -}}
+{{- range $ingress_host_group := .Values.hostsGroups }}
+{{- if $ingress_host_group.enabled | default true }}
+{{- if eq ( $ingress_host_group.type | default "ingress" ) "traefik-ingress-route" }}
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: {{ $fullName }}-{{ $ingress_host_group.name }}
+  {{- if $ingress_host_group.annotations }}
+  {{- include "common.metadata" ( dict "root" $ "service" ( dict "labels" $.Values.labels "annotations" ( merge ( dict ) $ingress_host_group.annotations $.Values.annotations ) ) $.Values ) | nindent 2 }}
+  {{- else }}
+  {{- include "common.metadata" ( dict "root" $ "service" $.Values ) | nindent 2 }}
+  {{- end }}
+spec:
+# Add tls only if tls is not set to false.
+# With resent version of helm it should be:
+# if or ( not ( hasKey $ingress_host_group "tls" ) ) ( not ( eq $ingress_host_group.tls false ) )
+# without else section.
+  {{- with $ingress_host_group.traefikEntryPoints }}
+  entryPoints: {{ . | toYaml | nindent 4 }}
+  {{- end }}
+  {{- with $ingress_host_group.traefikTLS }}
+  tls: {{ . | toYaml | nindent 4 }}
+  {{- end }}
+  routes:
+    {{- range $key, $path := $.Values.paths }}
+    {{- range $ingress_host_group.traefikHosts }}
+    - {{- with .kind }}
+      kind: {{ . }}
+      {{- end }}
+      {{- with .match }}
+      {{- if $path.path }}
+      match: "( {{ . }} ) && PathPrefix(`{{ $path.path }}`)"
+      {{- else }}
+      match: {{ . | quote }}
+      {{- end }}
+      {{- end }}
+      {{- if ( default true $.Values.traefikMiddleware.enabled ) }}
+      middlewares:
+      - name: {{ include "common.fullname" ( dict "root" $ "service" $.Values ) }}
+        namespace: {{ $.Release.Namespace }}
+      {{- end }}
+      {{- with .observability }}
+      observability: {{ . | toYaml | nindent 6 }}
+      {{- end }}
+      {{- with .priority }}
+      priority: {{ . }}
+      {{- end }}
+      {{- with .syntax }}
+      syntax: {{ . }}
+      {{- end }}
+      services:
+      - {{- with $path.traefikHealthCheck }}
+        healthCheck: {{ . | toYaml | nindent 8 }}
+        {{- end }}
+        kind: Service
+        {{- if $.Values.createService }}
+        name: {{ include "common.fullname" ( dict "root" $ "service" $path ) }}
+        {{- else }}
+        name: {{ include "ingress.serviceName" ( dict "root" $ "service" $.Values "path" $path ) }}
+        {{- end }}
+        namespace: {{ $.Release.Namespace }}
+        {{- with $path.traefikNativeLB }}
+        nativeLB: {{ . }}
+        {{- end }}
+        {{- with $path.traefikNodePortLB }}
+        nodePortLB: {{ . }}
+        {{- end }}
+        {{- with $path.traefikPassHostHeader }}
+        passHostHeader: {{ . }}
+        {{- end }}
+        port: {{ .servicePort | default 80 }}
+        {{- with $path.traefikResponseForwarding }}
+        responseForwarding: {{ . | toYaml | nindent 8 }}
+        {{- end }}
+        {{- with $path.traefikScheme }}
+        scheme: {{ . }}
+        {{- end }}
+        {{- with $path.traefikServersTransport }}
+        serversTransport: {{ . }}
+        {{- end }}
+        {{- with $path.traefikSticky }}
+        sticky: {{ . | toYaml | nindent 8 }}
+        {{- end }}
+        {{- with $path.traefikStrategy }}
+        strategy: {{ . }}
+        {{- end }}
+        {{- with $path.traefikWeight }}
+        weight: {{ . }}
+        {{- end }}
+    {{- end }}  {{- /* end of ingressHosts */ -}}
+    {{- end }}  {{- /* end of paths */ -}}
+{{- end }}  {{- /* end of type */ -}}
+{{- end }}  {{- /* end of enabled */ -}}
+{{- end }}  {{- /* end of hostsGroups */ -}}

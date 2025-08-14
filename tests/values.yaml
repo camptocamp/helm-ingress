@@ -16,10 +16,17 @@ hostsGroups:
       - example.com
       - example2.com
   - name: alt
+    type: traefik-ingress-route
     annotations:
       kubernetes.io/ingress.class: other
-    hosts:
-      - example3.com
+    traefikEntryPoints:
+      - websecure
+    traefikHosts:
+      - match: Host(`example3.com`)
+    traefikTLS:
+      store:
+        name: default
+        namespace: traefik
 
 paths:
   root:

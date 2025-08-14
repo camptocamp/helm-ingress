@@ -25,12 +25,23 @@
   - <a id="properties/traefikMiddleware/properties/spec"></a>**`spec`** _(object)_: Traefik middleware specification.
 - <a id="properties/hostsGroups"></a>**`hostsGroups`** _(array)_: Defined a group of hosts that will be in the same Ingress.
   - <a id="properties/hostsGroups/items"></a>**Items** _(object)_: Cannot contain additional properties.
+    - <a id="properties/hostsGroups/items/properties/enabled"></a>**`enabled`** _(boolean)_: Enable the group, if false the group will not be created. Default: `true`.
     - <a id="properties/hostsGroups/items/properties/name"></a>**`name`** _(string)_: Name of the hosts group, used in the Ingress name.
     - <a id="properties/hostsGroups/items/properties/annotations"></a>**`annotations`** _(object)_: Specific annotations to the group. Can contain additional properties.
       - <a id="properties/hostsGroups/items/properties/annotations/additionalProperties"></a>**Additional properties** _(string)_
+    - <a id="properties/hostsGroups/items/properties/type"></a>**`type`** _(string)_: The type of the group, can be 'ingress', 'traefik-ingress-route'. Must be one of: `["ingress", "traefik-ingress-route"]`. Default: `"ingress"`.
     - <a id="properties/hostsGroups/items/properties/tls"></a>**`tls`** _(boolean)_: Enable TLS for the group. Default: `true`.
     - <a id="properties/hostsGroups/items/properties/hosts"></a>**`hosts`** _(array)_: The hosts name.
       - <a id="properties/hostsGroups/items/properties/hosts/items"></a>**Items** _(string)_: The host name.
+    - <a id="properties/hostsGroups/items/properties/traefikEntryPoints"></a>**`traefikEntryPoints`** _(array)_: See the Traefik documentation for more information.
+    - <a id="properties/hostsGroups/items/properties/traefikTLS"></a>**`traefikTLS`** _(object)_: TLS for Traefik IngressRoute.
+    - <a id="properties/hostsGroups/items/properties/traefikHosts"></a>**`traefikHosts`** _(array)_: The hosts definitions for Traefik IngressRoute.
+      - <a id="properties/hostsGroups/items/properties/traefikHosts/items"></a>**Items** _(object)_: The host definition for Traefik IngressRoute.
+        - <a id="properties/hostsGroups/items/properties/traefikHosts/items/properties/kind"></a>**`kind`** _(string)_: See the Traefik documentation for more information. Default: `"Rule"`.
+        - <a id="properties/hostsGroups/items/properties/traefikHosts/items/properties/match"></a>**`match`** _(string)_: See the Traefik documentation: https://doc.traefik.io/traefik/v3.5/routing/routers/#rule.
+        - <a id="properties/hostsGroups/items/properties/traefikHosts/items/properties/observability"></a>**`observability`** _(object)_: See the Traefik documentation for more information.
+        - <a id="properties/hostsGroups/items/properties/traefikHosts/items/properties/priority"></a>**`priority`** _(integer)_: See the Traefik documentation for more information.
+        - <a id="properties/hostsGroups/items/properties/traefikHosts/items/properties/syntax"></a>**`syntax`** _(string)_: See the Traefik documentation for more information.
 - <a id="properties/paths"></a>**`paths`** _(object)_: The paths configuration. Can contain additional properties.
   - <a id="properties/paths/additionalProperties"></a>**Additional properties** _(object)_: Cannot contain additional properties.
     - <a id="properties/paths/additionalProperties/properties/nameOverride"></a>**`nameOverride`**: Refer to _[#/definitions/nameOverride](#definitions/nameOverride)_.
@@ -54,6 +65,16 @@
     - <a id="properties/paths/additionalProperties/properties/selector"></a>**`selector`** _(object)_: The selector of the Pod. Can contain additional properties.
       - <a id="properties/paths/additionalProperties/properties/selector/additionalProperties"></a>**Additional properties** _(string)_
     - <a id="properties/paths/additionalProperties/properties/path"></a>**`path`** _(string)_: The path of the service.
+    - <a id="properties/paths/additionalProperties/properties/traefikHealthCheck"></a>**`traefikHealthCheck`** _(object)_: See the Traefik documentation for more information.
+    - <a id="properties/paths/additionalProperties/properties/traefikNativeLB"></a>**`traefikNativeLB`** _(boolean)_: See the Traefik documentation for more information.
+    - <a id="properties/paths/additionalProperties/properties/traefikNodePortLB"></a>**`traefikNodePortLB`** _(boolean)_: See the Traefik documentation for more information.
+    - <a id="properties/paths/additionalProperties/properties/traefikPassHostHeader"></a>**`traefikPassHostHeader`** _(boolean)_: See the Traefik documentation for more information. Default: `true`.
+    - <a id="properties/paths/additionalProperties/properties/traefikResponseForwarding"></a>**`traefikResponseForwarding`** _(object)_: See the Traefik documentation for more information.
+    - <a id="properties/paths/additionalProperties/properties/traefikScheme"></a>**`traefikScheme`** _(string)_: See the Traefik documentation for more information.
+    - <a id="properties/paths/additionalProperties/properties/traefikServersTransport"></a>**`traefikServersTransport`** _(string)_: See the Traefik documentation for more information.
+    - <a id="properties/paths/additionalProperties/properties/traefikSticky"></a>**`traefikSticky`** _(object)_: See the Traefik documentation for more information.
+    - <a id="properties/paths/additionalProperties/properties/traefikStrategy"></a>**`traefikStrategy`** _(string)_: See the Traefik documentation for more information.
+    - <a id="properties/paths/additionalProperties/properties/traefikWeight"></a>**`traefikWeight`** _(integer)_: See the Traefik documentation for more information.
 
 ## Definitions
 
