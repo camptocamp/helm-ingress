@@ -1,9 +1,13 @@
+
+{{- if .Values.hostsGroups }}
+{{- $firstGroup := index .Values.hostsGroups 0 }}
+{{- if eq ( $firstGroup.type | default "ingress" ) "ingress" }}
 apiVersion: v1
 kind: ConfigMap
 metadata:
   name: {{ include "common.fullname" ( dict "root" . "service" .Values ) }}
   labels: {{ include "common.labels" ( dict "root" . "service" .Values ) | nindent 4 }}
 data:
-  {{- if .Values.hostsGroups }}
-  WEB_HOST: {{ ( index ( index .Values.hostsGroups 0 ).hosts 0 ) }}
-  {{- end }}
+  WEB_HOST: {{ ( index $firstGroup.hosts 0 ) }}
+{{- end }}
+{{- end }}
