@@ -1,6 +1,6 @@
 {{- $fullName := include "common.fullname" ( dict "root" . "service" .Values ) -}}
 {{- range $ingress_host_group := .Values.hostsGroups }}
-{{- if $ingress_host_group.enabled | default true }}
+{{- if or ( not ( hasKey $ingress_host_group "enabled" ) ) $ingress_host_group.enabled }}
 {{- if eq ( $ingress_host_group.type | default "ingress" ) "ingress" }}
 ---
 {{- if semverCompare ">=1.19.0" ( trimPrefix "v" $.Capabilities.KubeVersion.Version ) }}
@@ -21,7 +21,7 @@ metadata:
   {{- include "common.metadata" ( dict "root" $ "service" $.Values ) | nindent 2 }}
   {{- end }}
   {{- if ( default ( dict ) $.Values.traefikMiddleware ) }}
-  {{- if ( default true $.Values.traefikMiddleware.enabled ) }}
+  {{- if or ( not ( hasKey $.Values.traefikMiddleware "enabled" ) ) $.Values.traefikMiddleware.enabled }}
     traefik.ingress.kubernetes.io/router.middlewares: {{ $.Release.Namespace }}-{{ include "common.fullname" ( dict "root" $ "service" $.Values ) }}@kubernetescrd
   {{- end }}
   {{- end }}
