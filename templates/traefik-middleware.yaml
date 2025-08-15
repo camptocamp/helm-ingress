@@ -1,6 +1,6 @@
 {{- $fullName := include "common.fullname" ( dict "root" $ "service" $.Values ) }}
 {{- if ( default ( dict ) $.Values.traefikMiddleware ) }}
-{{- if ( default true $.Values.traefikMiddleware.enabled ) }}
+{{- if or ( not ( hasKey $.Values.traefikMiddleware "enabled" ) ) $.Values.traefikMiddleware.enabled }}
 ---
 apiVersion: traefik.io/v1alpha1
 kind: Middleware
