@@ -12,7 +12,6 @@ metadata:
     app.kubernetes.io/component: main
 data:
   WEB_HOST: example.com
-
 ---
 # Source: ingress/templates/ingress.yaml
 apiVersion: networking.k8s.io/v1
@@ -45,7 +44,6 @@ spec:
                 name: test-root-service
                 port:
                   number: 80
-
 ---
 # Source: ingress/templates/ingress.yaml
 apiVersion: networking.k8s.io/v1
