@@ -12,6 +12,7 @@ metadata:
     app.kubernetes.io/component: main
 data:
   WEB_HOST: geomapfish-demo-2-7.camptocamp.com
+
 ---
 # Source: ingress/templates/services.yaml
 apiVersion: v1
@@ -35,6 +36,7 @@ spec:
     app.kubernetes.io/instance: currentProd
     app.kubernetes.io/component: main
     app.kubernetes.io/name: custom-feedback
+
 ---
 # Source: ingress/templates/services.yaml
 apiVersion: v1
@@ -59,6 +61,7 @@ spec:
     app.kubernetes.io/instance: currentProd
     app.kubernetes.io/component: geoportal
     app.kubernetes.io/name: geomapfish
+
 ---
 # Source: ingress/templates/services.yaml
 apiVersion: v1
